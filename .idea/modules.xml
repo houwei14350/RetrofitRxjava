@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RetrofitRxjava.iml" filepath="$PROJECT_DIR$/RetrofitRxjava.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/retrofitrxjavalibrary/retrofitrxjavalibrary.iml" filepath="$PROJECT_DIR$/retrofitrxjavalibrary/retrofitrxjavalibrary.iml" />
     </modules>
   </component>
 </project>
