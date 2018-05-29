@@ -2,7 +2,6 @@ package com.minihou.retrofitrxjavalibrary;
 
 import android.util.Log;
 
-
 import com.minihou.retrofitrxjavalibrary.exception.ApiException;
 import com.minihou.retrofitrxjavalibrary.model.INetworkResponse;
 
@@ -53,6 +52,9 @@ public abstract class BaseProxy<T> {
             }
         };
     }
+
+
+
 
 }
 

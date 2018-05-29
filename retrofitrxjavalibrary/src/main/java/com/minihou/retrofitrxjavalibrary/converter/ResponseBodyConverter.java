@@ -29,11 +29,10 @@ public class ResponseBodyConverter<T> implements Converter<ResponseBody, T> {
         String content = body.string();
         JSONObject jsonObject = JSON.parseObject(content);
         String result = jsonObject.getString("result");
-        if ("{}".equals(result) || "[]".equals(result)) {
+        if ("{}".equals(result) || "[]".equals(result) || result == null) {
             jsonObject.remove("result");
         }
         content = jsonObject.toJSONString();
-        Object o = JSON.parseObject(content, type);
-        return (T) o;
+        return JSON.parseObject(content, type);
     }
 }
