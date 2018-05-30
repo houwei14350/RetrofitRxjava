@@ -2,6 +2,7 @@ package com.minihou.retrofitrxjava.network.api;
 
 import com.minihou.retrofitrxjava.consts.ConstUrl;
 import com.minihou.retrofitrxjava.network.response.ECServerLoginResponse;
+import com.minihou.retrofitrxjava.network.response.ECServerRequestCodeResponse;
 
 import java.util.Map;
 
@@ -18,5 +19,8 @@ import retrofit2.http.POST;
  */
 public interface UserApi {
     @POST(ConstUrl.LOGIN_SERVER)
-    Observable<ECServerLoginResponse> postLogin(@Body Map<String, Object> name);
+    Observable<ECServerLoginResponse> postLogin(@Body Map<String, Object> params);
+
+    @POST(ConstUrl.GET_VERIFICATION_CODE_FOR_SAFETY)
+    Observable<ECServerRequestCodeResponse> postVerificationCode(@Body Map<String, Object> params);
 }

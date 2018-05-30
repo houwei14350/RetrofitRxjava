@@ -1,8 +1,8 @@
 package com.minihou.retrofitrxjava;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.minihou.retrofitrxjava.activity.DifferentiateDomainActivity;
+import com.minihou.retrofitrxjava.activity.GetVerificationActivity;
 import com.minihou.retrofitrxjava.activity.LoginActivity;
 import com.minihou.retrofitrxjava.activity.StartFinishActivity;
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         list.add("区分域名及返回结构");
         list.add("区分不同的requestCode");
         list.add("模拟首页登陆相关");
+        list.add("模拟获取验证码");
 
         list_view = findViewById(R.id.list_view);
         list_view.setAdapter(new BaseAdapter() {
@@ -79,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 2:
                         startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(MainActivity.this, GetVerificationActivity.class));
                         break;
                 }
             }

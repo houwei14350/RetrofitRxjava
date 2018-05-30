@@ -17,6 +17,11 @@ import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
+/**
+ * 统一处理请求回调
+ *
+ * @param <T>
+ */
 public abstract class BaseObserver<T> implements Observer<T> {
     private Disposable disposable;
 
@@ -29,19 +34,12 @@ public abstract class BaseObserver<T> implements Observer<T> {
         disposable = d;
         ProxyManager.getInstance().getDisposables().add(d);
         onStart();
-
     }
 
     @Override
     public void onNext(T tNetworkResponse) {
-
-
-
-            onSuccess(tNetworkResponse);
-            onFinish();
-
-
-
+        onSuccess(tNetworkResponse);
+        onFinish();
     }
 
     @Override
@@ -55,9 +53,9 @@ public abstract class BaseObserver<T> implements Observer<T> {
             onFailure(9999, "网络出问题啦");
         } else if (e instanceof ApiException) {
             onFailure(((ApiException) e).errorCode, ((ApiException) e).message);
-        } else if(e instanceof SecurityException){
+        } else if (e instanceof SecurityException) {
             onFailure(7777, "缺少权限");
-        } else{
+        } else {
             onFailure(8888, "服务器异常");
         }
         onFinish();
@@ -65,7 +63,6 @@ public abstract class BaseObserver<T> implements Observer<T> {
 
     @Override
     public void onComplete() {
-        //
         Log.e("simon", "complete");
     }
 

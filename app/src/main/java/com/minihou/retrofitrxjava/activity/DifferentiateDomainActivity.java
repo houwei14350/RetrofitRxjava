@@ -16,6 +16,7 @@ import com.minihou.retrofitrxjava.network.proxy.PhoneProxy;
 import com.minihou.retrofitrxjavalibrary.BaseObserver;
 import com.minihou.retrofitrxjavalibrary.RxHelper;
 
+import java.text.MessageFormat;
 import java.util.HashMap;
 
 import io.reactivex.functions.BiFunction;
@@ -71,7 +72,7 @@ public class DifferentiateDomainActivity extends AppCompatActivity implements Li
         maps.put("phone", "18621514815");
         maps.put("key", "b71f93669c67b7614b308d58958048fd");
 
-        RxHelper.doHttp(PhoneProxy.getProxy().getPhoneInfo(maps),new BaseObserver<PhoneInfo>(){
+        RxHelper.doHttp(PhoneProxy.getProxy().getPhoneInfo(maps), new BaseObserver<PhoneInfo>() {
 
             @Override
             protected void onStart() {
@@ -80,13 +81,13 @@ public class DifferentiateDomainActivity extends AppCompatActivity implements Li
 
             @Override
             protected void onSuccess(PhoneInfo phoneInfo) {
-                Log.e("simon","====>");
-                tv_content.setText("content:" + phoneInfo.toString());
+                Log.e("simon", "====>");
+                tv_content.setText(String.format("content:%s", phoneInfo.toString()));
             }
 
             @Override
             protected void onFailure(int errorCode, String message) {
-                tv_content.setText("errorCode:" + errorCode + "\nmessage:" + message);
+                tv_content.setText(MessageFormat.format("errorCode:{0}\nmessage:{1}", errorCode, message));
             }
         });
 
@@ -118,7 +119,7 @@ public class DifferentiateDomainActivity extends AppCompatActivity implements Li
 
     private void getData3() {
 
-                HashMap<String, String> params = new HashMap<>();
+        HashMap<String, String> params = new HashMap<>();
         params.put("postcode", "415602");
         params.put("key", "9146ccc5268dce4fb31d361621733768");
 
@@ -129,23 +130,23 @@ public class DifferentiateDomainActivity extends AppCompatActivity implements Li
         RxHelper.doHttpWithZip(EmailProxy.getProxy().getEmailInfo(params), PhoneProxy.getProxy().getPhoneInfo(maps), new BiFunction() {
             @Override
             public Object apply(Object o, Object o2) throws Exception {
-                Log.e("simonApply",o.toString()+" ==="+o2.toString());
-                return new OO(o,o2);
+                Log.e("simonApply", o.toString() + " ===" + o2.toString());
+                return new OO(o, o2);
             }
         }, new BaseObserver() {
             @Override
             protected void onStart() {
-                Log.e("simon start","====");
+                Log.e("simon start", "====");
             }
 
             @Override
             protected void onSuccess(Object o) {
-                Log.e("simon",o.toString());
+                Log.e("simon", o.toString());
             }
 
             @Override
             protected void onFailure(int errorCode, String message) {
-                Log.e("simonFailure","=====");
+                Log.e("simonFailure", "=====");
             }
         });
 

@@ -1,5 +1,6 @@
 package com.minihou.retrofitrxjava.network.response;
 
+import com.minihou.retrofitrxjava.base.BaseServerBean;
 import com.minihou.retrofitrxjavalibrary.model.INetworkResponse;
 
 /**
@@ -9,11 +10,7 @@ import com.minihou.retrofitrxjavalibrary.model.INetworkResponse;
  * All Rights Reserved. 六度人和
  * description : use a dialog to description this file
  */
-public class ECServerLoginResponse implements INetworkResponse {
-    private String ActionStatus;
-    private int TimeStamp;
-    private String ErrorInfo;
-    private int ErrorCode;
+public class ECServerLoginResponse extends BaseServerBean implements INetworkResponse {
     private String SdkAppid;
     private String AccountType;
     private int Userid;
@@ -23,37 +20,6 @@ public class ECServerLoginResponse implements INetworkResponse {
     private String TimKey;
     private String SecreKey; //登陆密匙只有账号密码登陆的时候才有值
 
-    public String getActionStatus() {
-        return ActionStatus;
-    }
-
-    public void setActionStatus(String actionStatus) {
-        ActionStatus = actionStatus;
-    }
-
-    public int getTimeStamp() {
-        return TimeStamp;
-    }
-
-    public void setTimeStamp(int timeStamp) {
-        TimeStamp = timeStamp;
-    }
-
-    public String getErrorInfo() {
-        return ErrorInfo;
-    }
-
-    public void setErrorInfo(String errorInfo) {
-        ErrorInfo = errorInfo;
-    }
-
-    public int getErrorCode() {
-        return ErrorCode;
-    }
-
-    public void setErrorCode(int errorCode) {
-        ErrorCode = errorCode;
-    }
 
     public String getSdkAppid() {
         return SdkAppid;

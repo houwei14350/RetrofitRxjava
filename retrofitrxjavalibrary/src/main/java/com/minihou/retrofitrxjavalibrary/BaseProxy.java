@@ -1,7 +1,5 @@
 package com.minihou.retrofitrxjavalibrary;
 
-import android.util.Log;
-
 import com.minihou.retrofitrxjavalibrary.exception.ApiException;
 import com.minihou.retrofitrxjavalibrary.model.INetworkResponse;
 
@@ -30,30 +28,22 @@ public abstract class BaseProxy<T> {
 
     protected abstract T init();
 
-    protected ObservableTransformer<INetworkResponse<T>, T> transformerNetToBiz() {
-        return new ObservableTransformer<INetworkResponse<T>, T>() {
+    protected <F> ObservableTransformer<INetworkResponse<F>, F> transformerNetToBiz() {
+        return new ObservableTransformer<INetworkResponse<F>, F>() {
             @Override
-            public Observable<T> apply(Observable<INetworkResponse<T>> observable) {
-                return observable.map(new Function<INetworkResponse<T>, T>() {
+            public Observable<F> apply(Observable<INetworkResponse<F>> observable) {
+                return observable.map(new Function<INetworkResponse<F>, F>() {
                     @Override
-                    public T apply(INetworkResponse<T> tiNetworkResponse) throws Exception {
-                        Log.e("simon===>compose", tiNetworkResponse.toString());
-//                        if (tiNetworkResponse instanceof INetworkResponse) {
+                    public F apply(INetworkResponse<F> tiNetworkResponse) throws Exception {
                         if (!tiNetworkResponse.isSuccess()) {
                             throw new ApiException(tiNetworkResponse.getCode(), tiNetworkResponse.getMessage());
                         }
                         return tiNetworkResponse.getResult();
-//                        } else {
-//                            throw new ApiException(ApiException.FORMAT_TYPE_WRONG_CODE, ApiException.FORMAT_TYPE_WRONG_MSG);
-//                        }
-
                     }
                 });
             }
         };
     }
-
-
 
 
 }

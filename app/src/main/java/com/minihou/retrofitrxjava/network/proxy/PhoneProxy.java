@@ -4,7 +4,6 @@ package com.minihou.retrofitrxjava.network.proxy;
 import com.minihou.retrofitrxjava.network.api.PhoneApi;
 import com.minihou.retrofitrxjavalibrary.BaseProxy;
 import com.minihou.retrofitrxjavalibrary.RetrofitBuilder;
-import com.minihou.retrofitrxjavalibrary.model.INetworkResponse;
 
 import java.util.HashMap;
 
@@ -37,9 +36,10 @@ public class PhoneProxy extends BaseProxy {
     }
 
 
-    public <T> Observable<INetworkResponse<T>> getPhoneInfo(HashMap<String, String> params) {
-        return  api.getPhoneInfo(params).compose(transformerNetToBiz());
+    public Observable getPhoneInfo(HashMap<String, String> params) {
+        return api.getPhoneInfo(params).compose(transformerNetToBiz());
     }
+
 
 //    public BaseProxy getPhoneInfo(HashMap<String, String> params, BaseObserver observer) {
 //        BaseProxy observable=api.getPhoneInfo(params);

@@ -3,10 +3,8 @@ package com.minihou.retrofitrxjava.network.proxy;
 
 import com.minihou.retrofitrxjava.consts.ConstUrl;
 import com.minihou.retrofitrxjava.network.api.UserApi;
-import com.minihou.retrofitrxjava.network.response.ECServerLoginResponse;
 import com.minihou.retrofitrxjavalibrary.BaseProxy;
 import com.minihou.retrofitrxjavalibrary.RetrofitBuilder;
-import com.minihou.retrofitrxjavalibrary.model.INetworkResponse;
 
 import java.util.HashMap;
 
@@ -38,9 +36,12 @@ public class UserProxy extends BaseProxy {
     }
 
 
-    public Observable<INetworkResponse> login(HashMap<String, Object> params) {
-        Observable<ECServerLoginResponse> ecServerLoginResponseObservable = api.postLogin(params);
-        return ecServerLoginResponseObservable.compose(transformerNetToBiz());
+    public Observable login(HashMap<String, Object> params) {
+        return api.postLogin(params).compose(transformerNetToBiz());
+    }
+
+    public Observable getVerificationCode(HashMap<String, Object> params) {
+        return api.postVerificationCode(params).compose(transformerNetToBiz());
     }
 
 }

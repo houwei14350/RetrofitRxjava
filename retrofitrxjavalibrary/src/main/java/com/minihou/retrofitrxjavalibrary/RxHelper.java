@@ -24,23 +24,19 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RxHelper {
 
-    @SuppressWarnings("unchecked")
-    public static <T> void doHttp(Observable<INetworkResponse<T>> observable, @android.support.annotation.NonNull BaseObserver observer) {
-        observable.compose(schedulersTransformer()).subscribe(observer);
+    public static <T> void doHttp(Observable<T> observable, @android.support.annotation.NonNull BaseObserver<? super T> observer) {
+        observable.compose(RxHelper.<T>schedulersTransformer()).subscribe(observer);
     }
 
-    @SuppressWarnings("unchecked")
     public static void doHttpWithZip(Observable observable1, Observable observable2, BiFunction biFunction, BaseObserver observer) {
         Observable.zip(observable1, observable2, biFunction).compose(schedulersTransformer()).subscribe(observer);
     }
 
 
-    @SuppressWarnings("unchecked")
     public static <T> void doHttpInLifecycle(Observable<INetworkResponse<T>> observable, LifecycleOwner lifecycleOwner, @android.support.annotation.NonNull BaseObserver observer) {
         observable.compose(schedulersTransformer()).as(RxLifecycleUtils.bindLifecycle(lifecycleOwner)).subscribe(observer);
     }
 
-    @SuppressWarnings("unchecked")
     public static <T, F, R> void doHttpWithZipInLifecycle(Observable<INetworkResponse<T>> observable1, Observable<INetworkResponse<F>> observable2, LifecycleOwner lifecycleOwner, BiFunction<INetworkResponse<T>, INetworkResponse<F>, R> biFunction, BaseObserver observer) {
         Observable.zip(observable1, observable2, biFunction).compose(schedulersTransformer()).as(RxLifecycleUtils.bindLifecycle(lifecycleOwner)).subscribe(observer);
     }
